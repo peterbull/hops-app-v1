@@ -172,6 +172,26 @@ def complex(r: float, i: float, z: float):
     return rhino3dm.Point3d(r, i, z + random.uniform(-3, 3))
 
 
+from fastai.tabular.all import *
+
+@hops.component(
+    "/dotproduct",
+    name="dotproduct",
+    nickname="dotproduct",
+    description="dotproduct numbers with CPython",
+    inputs=[
+        hs.HopsNumber("A", "A", "First number"),
+        hs.HopsNumber("B", "B", "Second number"),
+    ],
+    outputs=[hs.HopsNumber("Sum", "S", " + B")]
+)
+def dotproduct(c: float, d: float):
+    c = torch.tensor([1,2,3])
+    d = torch.tensor([3,4,5])
+    result = c@d
+    result = result.tolist()
+    result = [x for x in result]
+    return result
 
 
 
